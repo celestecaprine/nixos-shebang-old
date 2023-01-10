@@ -17,6 +17,7 @@
       slurp
       wl-clipboard
       wlr-randr
+      hyprwm-contrib-packages.grimblast
     ];
   };
 

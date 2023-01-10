@@ -9,21 +9,27 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprwm-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     hyprland = {
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
   
-  outputs = inputs @ { self, nixpkgs, home-manager, hyprland, ... }:
+  outputs = inputs @ { self, nixpkgs, home-manager, hyprland, hyprwm-contrib, ... }:
     let
       user = "shebang";
       location = "$HOME/.flake";
+      
     in {
       nixosConfigurations = (
         import ./hosts {
           inherit (nixpkgs) lib;
-	  inherit inputs nixpkgs home-manager user location hyprland;
+	  inherit inputs nixpkgs home-manager user location hyprland hyprwm-contrib;
 	}
       );
     };

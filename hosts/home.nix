@@ -35,6 +35,7 @@
 
       # Other
       tofi
+
     ];
     file.".config/wallpaper.gif".source = ../modules/themes/wallpaper.gif;
     pointerCursor = {
@@ -63,5 +64,6 @@
     font = {
       name = "Inter V";
     };
+    gtk3.extraConfig = { gtk-decoration-layout = "menu:"; };
   };
 }
