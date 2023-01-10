@@ -38,6 +38,7 @@
       pciutils
       usbutils
       curl
+      git
     ];
   };
   
