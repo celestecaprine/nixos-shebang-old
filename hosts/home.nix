@@ -2,10 +2,10 @@
 
 {
   imports =
-    (import ../modules/editors);
+    (import ../modules/editors) ++
     #(import ../modules/programs);
     #(import ../modules/programs) ++
-    #(import ../modules/services);
+    (import ../modules/services);
 
   home = {
     username = "${user}";

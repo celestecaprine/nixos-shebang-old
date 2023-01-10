@@ -47,6 +47,7 @@ in
   };
   t430 = lib.nixosSystem {
     inherit system;
+    inherit pkgs;
     specialArgs = {
       inherit inputs user location hyprland hyprwm-contrib;
       host = {
