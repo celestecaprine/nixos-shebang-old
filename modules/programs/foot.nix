@@ -6,7 +6,7 @@
       settings = {
         main = {
           term = "xterm-256color";
-          font = "FiraCode Nerd Font Mono:size=10";
+          font = "FiraCode Nerd Font Mono:size=9";
         };
         colors = {
           alpha = "0.9";

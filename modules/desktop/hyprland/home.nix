@@ -9,103 +9,84 @@ let
     exec-once=waybar &
     exec-once=hyprctl setcursor Catppuccin-Mocha-Dark-Cursors 32
     
+    blurls=launcher
+
     # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
     input {
         kb_layout = us
-        kb_variant =
-        kb_model =
-        kb_options =
-        kb_rules =
-    
         follow_mouse = 1
-    
         touchpad {
             natural_scroll = yes
         }
-    
-        sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
+    }
+
+    misc {
+      no_vfr = yes
+      focus_on_activate = yes
+      disable_hyprland_logo = yes
+      disable_splash_rendering = yes
+      enable_swallow = yes
+      swallow_regex = "foot"
     }
     
     general {
-    
-        gaps_in = 5
-        gaps_out = 20
-        border_size = 2
-        col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
-        col.inactive_border = rgba(595959aa)
-    
-        layout = dwindle
+      gaps_in = 5
+      gaps_out = 20
+      border_size = 2
+      #col.active_border = rgba(f5e0dcee) rgba(fab387ee) 45deg
+      col.active_border = rgba(89b4faee)
+      col.inactive_border = rgba(595959aa)
+      layout = master
     }
     
     decoration {
-    
-        rounding = 10
-        blur = no
-        blur_size = 3
-        blur_passes = 1
-        blur_new_optimizations = on
-    
-        drop_shadow = no
-        shadow_range = 4
-        shadow_render_power = 3
-        col.shadow = rgba(1a1a1aee)
+      rounding = 0
+      blur = yes
+      blur_size = 3
+      blur_passes = 1
+      blur_new_optimizations = on
+
+      drop_shadow = yes
+      shadow_range = 4
+      shadow_render_power = 3
+      col.shadow = rgba(1a1a1aee)
     }
     
     animations {
-        enabled = false
-    
-        # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
-    
-        bezier = myBezier, 0.05, 0.9, 0.1, 1.05
-    
-        animation = windows, 1, 7, myBezier
-        animation = windowsOut, 1, 7, default, popin 80%
-        animation = border, 1, 10, default
-        animation = fade, 1, 7, default
-        animation = workspaces, 1, 6, default
+      enabled = yes
+      bezier = myBezier, 0.05, 0.9, 0.1, 1
+      animation = windows, 1, 7, myBezier
+      animation = windowsOut, 1, 7, default, popin 80%
+      animation = border, 1, 10, default
+      animation = fade, 1, 7, default
+      animation = workspaces, 1, 6, default
     }
     
     dwindle {
-        # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
         pseudotile = yes # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
         preserve_split = yes # you probably want this
     }
     
     master {
-        # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-        new_is_master = true
+      new_is_master = false
+      new_on_top = false
+      no_gaps_when_only = true
     }
     
-    gestures {
-        # See https://wiki.hyprland.org/Configuring/Variables/ for more
-        workspace_swipe = off
-    }
-    
-    # Example per-device config
-    # See https://wiki.hyprland.org/Configuring/Keywords/#executing for more
-    device:epic mouse V1 {
-        sensitivity = -0.5
-    }
-    
-    # Example windowrule v1
-    # windowrule = float, ^(kitty)$
-    # Example windowrule v2
-    # windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
-    # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
-    
-    
-    # See https://wiki.hyprland.org/Configuring/Keywords/ for more
     $mainMod = SUPER
     
     # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-    bind = $mainMod, T, exec, ${pkgs.foot}/bin/foot
+    bind = $mainMod, T, exec, foot
     bind = $mainMod, C, killactive, 
     bind = $mainMod SHIFT, Q, exit, 
-    bind = $mainMod, E, exec, ${pkgs.foot}/bin/foot ${pkgs.lf}/bin/lf
+    bind = $mainMod, E, exec, foot lf
     bind = $mainMod, V, togglefloating, 
-    bind = $mainMod, R, exec, ${pkgs.tofi}/bin/tofi-drun --drun-launch=true
+    bind = $mainMod, R, exec, tofi-drun --drun-launch=true
     bind = $mainMod, P, pseudo, # dwindle
     bind = $mainMod, J, togglesplit, # dwindle
+    bind = $mainMod, Print, exec, grimblast --notify copysave area $HOME/Pictures/Screenshots/screenshot-$(date +%Y-%d-%m_%H:%M:%S)
+bind = $mainMod SHIFT, Print, exec, grimblast --notify copysave output $HOME/Pictures/Screenshots/screenshot-$(date +%Y-%d-%m_%H:%M:%S)
+bind = $mainMod CONTROL, Print, exec, grimblast --notify copysave active $HOME/Pictures/Screenshots/$(${pkgs.hyprland}hyprctl activewindow -j | ${pkgs.jq}/bin/jq -r '.class')-$(date +%Y-%d-%m_%H:%M:%S)
     
     # Move focus with mainMod + arrow keys
     bind = $mainMod, left, movefocus, l
