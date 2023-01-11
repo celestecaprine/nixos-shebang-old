@@ -7,4 +7,9 @@
       pinentryFlavor = "qt";
     };
   };
+  programs = {
+    gpg = {
+      enable = true;
+    };
+  };
 }

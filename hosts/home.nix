@@ -4,7 +4,7 @@
   imports =
     (import ../modules/editors) ++
     #(import ../modules/programs);
-    #(import ../modules/programs) ++
+    (import ../modules/programs) ++
     (import ../modules/services);
 
   home = {
@@ -18,6 +18,7 @@
       lf
       tldr
       pridefetch
+      gh
 
       # Multimedia Programs
       imv
