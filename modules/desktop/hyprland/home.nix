@@ -1,9 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, host, ... }:
 
 let
-  hyprlandConf = '' 
-    # Monitor config
-    monitor=,preferred,auto,1.5
+  confFile = with host; '' 
+    MONITORS
     
     # exec-once = waybar & hyprpaper & firefox
     
@@ -143,6 +142,16 @@ let
     bindm = $mainMod, mouse:272, movewindow
     bindm = $mainMod, mouse:273, resizewindow
   '';
+
+  hyprlandConf = with host; builtins.replaceStrings ["MONITORS"]
+    [
+      (if hostName == "np-t430" then ''
+        monitor=${toString mainMonitor},1920x1080@60,1920x0,1
+      ''
+      else false)
+    ]
+    "${confFile}";
+
   in {
     xdg.configFile."hypr/hyprland.conf".text = hyprlandConf;
   }

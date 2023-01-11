@@ -23,6 +23,7 @@
     };
 
   networking = {
+    hostName = "np-t430";
     networkmanager.enable = true;
     firewall.enable = false;
   };

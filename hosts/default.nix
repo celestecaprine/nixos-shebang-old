@@ -36,7 +36,7 @@ in
         home-manager.extraSpecialArgs = {
           inherit user;
           host = {
-            hostname = "np-nixos";
+            hostName = "np-nixos";
           };
         };
         home-manager.users.${user} = {
@@ -52,6 +52,7 @@ in
       inherit inputs user location hyprland hyprwm-contrib;
       host = {
         hostName = "np-t430";
+        mainMonitor = "LVDS-1";
       };
     };
     modules = [
@@ -65,7 +66,8 @@ in
         home-manager.extraSpecialArgs = {
           inherit user;
           host = {
-            hostname = "np-t430";
+            hostName = "np-t430";
+            mainMonitor = "LVDS-1";
           };
         };
         home-manager.users.${user} = {
