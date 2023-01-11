@@ -1,4 +1,4 @@
-{ lib, inputs, nixpkgs, home-manager, user, location, hyprland, hyprwm-contrib, hyprland-portal, ... }:
+{ lib, inputs, nixpkgs, home-manager, vscode-server, user, location, hyprland, hyprwm-contrib, hyprland-portal, ... }:
 
 let
   system = "x86_64-linux";
