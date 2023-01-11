@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ ../../programs/waybar.nix ];
+  imports = [ ../../programs/waybar ];
 
   services.dbus.enable = true;
 
@@ -18,6 +18,8 @@
       wl-clipboard
       wlr-randr
       hyprwm-contrib-packages.grimblast
+      xdg-desktop-portal-hyprland-packages.xdg-desktop-portal-hyprland
+      xdg-desktop-portal-hyprland-packages.hyprland-share-picker
       waypipe
     ];
   };

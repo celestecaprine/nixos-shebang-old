@@ -21,21 +21,24 @@
       gh
 
       # Multimedia Programs
+      pavucontrol
       imv
       mpv
 
       # Web Programs
       firefox
+      discord
 
       # File Management
       zathura
       unzip
       unrar
-      xfce.thunar
+      gnome.nautilus
       gnome.file-roller
 
       # Other
       tofi
+      rofi-wayland
 
     ];
     file.".config/wallpaper.gif".source = ../modules/themes/wallpaper.gif;
@@ -54,6 +57,34 @@
 
   programs = {
     home-manager.enable = true;
+    obs-studio = {
+      enable = true;
+      plugins = [ pkgs.obs-studio-plugins.wlrobs ];
+    };
+    rofi = {
+      enable = true;
+      package = pkgs.rofi-wayland;
+      pass.enable = true;
+      terminal = "foot";
+    };
+  };
+
+  xdg.mimeApps = {
+    enable = true;
+    associations.added = {
+      "x-scheme-handler/http" = "firefox.desktop";
+      "x-scheme-handler/https" = "firefox.desktop";
+      "application/html" = "firefox.desktop";
+      "application/pdf" = "zathura";
+      "application/png" = "imv";
+    };
+    defaultApplications = {
+      "x-scheme-handler/http" = "firefox.desktop";
+      "x-scheme-handler/https" = "firefox.desktop";
+      "application/html" = "firefox.desktop";
+      "application/pdf" = "zathura";
+      "application/png" = "imv";
+    };
   };
 
   gtk = {
@@ -69,6 +100,6 @@
     font = {
       name = "Inter V";
     };
-    gtk3.extraConfig = { gtk-decoration-layout = "menu:"; };
+    gtk3.extraConfig = { gtk-decoration-layout = ""; };
   };
 }

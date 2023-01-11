@@ -1,22 +1,26 @@
-{ user, ... }:
+{ user, ...  }:
 
 {
   programs.zsh = {
-    #prezto = {
-    #  enable = true;
-    #  terminal.autoTitle = true;
-    #  prompt = {
-    #    theme = "pure";
-    #  };
-    #  editor.keymap = "vi";
-    #};
-    oh-my-zsh = {
+    enable = true;
+    enableAutosuggestions = false;
+    enableSyntaxHighlighting = false;
+    history.size = 10000;
+
+    prezto = {
       enable = true;
-      theme = "refined";
+      #prompt.showReturnVal = true;
+      terminal.autoTitle = true;
     };
-  };
-  xdg.dataFile."/home/${user}/.zshrc".text = ''
-      #!/bin/env zsh
+    #zplug = {
+    #  enable = true;
+    #  plugins = [
+    #    { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; }
+    #  ];
+    #};
+    initExtra = ''
+      prompt peepcode $
       pridefetch -f bisexual
     '';
+  };
 }

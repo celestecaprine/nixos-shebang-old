@@ -5,9 +5,9 @@ let
     MONITORS
     
     # exec-once = waybar & hyprpaper & firefox
-    exec-once=${pkgs.hyprland}/bin/hyprctl setcursor Catppuccin-Mocha-Dark-Cursors 32
-    exec-once=${pkgs.mpvpaper}/bin/mpvpaper LVDS-1 -o "loop" $HOME/.config/wallpaper.gif
-    exec-once=${pkgs.waybar}/bin/waybar &
+    exec-once=mpvpaper LVDS-1 -o "loop" $HOME/.config/wallpaper.gif
+    exec-once=waybar &
+    exec-once=hyprctl setcursor Catppuccin-Mocha-Dark-Cursors 32
     
     # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
     input {
@@ -20,7 +20,7 @@ let
         follow_mouse = 1
     
         touchpad {
-            natural_scroll = no
+            natural_scroll = yes
         }
     
         sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
@@ -144,6 +144,8 @@ let
     # Move/resize windows with mainMod + LMB/RMB and dragging
     bindm = $mainMod, mouse:272, movewindow
     bindm = $mainMod, mouse:273, resizewindow
+
+
   '';
 
   hyprlandConf = with host; builtins.replaceStrings ["MONITORS"]

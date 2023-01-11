@@ -1,4 +1,4 @@
-{ lib, inputs, nixpkgs, home-manager, user, location, hyprland, hyprwm-contrib, ... }:
+{ lib, inputs, nixpkgs, home-manager, user, location, hyprland, hyprwm-contrib, xdg-desktop-portal-hyprland, ... }:
 
 let
   system = "x86_64-linux";
@@ -10,6 +10,11 @@ let
       (self: super: {
       hyprwm-contrib-packages = hyprwm-contrib.packages.${system};
       })
+      (self: super: {
+      xdg-desktop-portal-hyprland-packages = xdg-desktop-portal-hyprland.packages.${system};
+      })
+      (self: super: {discord = super.discord.override { withOpenASAR = true; };
+    })
     ];
   };
 
@@ -40,7 +45,7 @@ in
           };
         };
         home-manager.users.${user} = {
-          imports = [(import ./home.nix)] ++ [(import ./vm/home.nix)] ++ [(import ../modules/shell/zsh/home.nix)] ++ [(import ../modules/programs/foot.nix)];
+          imports = [(import ./home.nix)] ++ [(import ./vm/home.nix)] ++ [(import ../modules/programs/foot.nix)];
         };
       }
     ];
@@ -49,7 +54,7 @@ in
     inherit system;
     inherit pkgs;
     specialArgs = {
-      inherit inputs user location hyprland hyprwm-contrib;
+      inherit inputs user location hyprland hyprwm-contrib xdg-desktop-portal-hyprland;
       host = {
         hostName = "np-t430";
         mainMonitor = "LVDS-1";
@@ -71,7 +76,7 @@ in
           };
         };
         home-manager.users.${user} = {
-          imports = [(import ./home.nix)] ++ [(import ./t430/home.nix)] ++ [(import ../modules/shell/zsh/home.nix)] ++ [(import ../modules/programs/foot.nix)];
+          imports = [(import ./home.nix)] ++ [(import ./t430/home.nix)] ++ [(import ../modules/programs/foot.nix)] ++ [(../modules/shell/zsh/home.nix)];
         };
       }
     ];

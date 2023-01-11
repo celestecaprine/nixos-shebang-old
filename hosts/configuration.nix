@@ -12,7 +12,11 @@
   
   time.timeZone = "America/Chicago";
 
-  security.rtkit.enable = true;
+  security = {
+    rtkit.enable = true;
+    polkit.enable = true;
+  };
+  
 
   fonts.fonts = with pkgs; [
     font-awesome
@@ -51,12 +55,21 @@
       };
       pulse.enable = true;
       jack.enable = true;
+      wireplumber.enable = true;
     };
     openssh = {
       enable = true;
       allowSFTP = true;
     };
+    gvfs = {
+      enable = true;
+    };
+    tlp = {
+      enable = true;
+    };
+    flatpak.enable = true;
   };
+
   
   nix = {
     settings = {
@@ -77,6 +90,12 @@
   };
 
   nixpkgs.config.allowUnfree = true;
+  
+  xdg.portal = {
+    xdgOpenUsePortal = true;
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
+  };
 
   system = {
     autoUpgrade = {

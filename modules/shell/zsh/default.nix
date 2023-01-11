@@ -8,6 +8,9 @@
       syntaxHighlighting.enable = true;
       enableCompletion = true;
       histSize = 100000;
+      ohMyZsh = {
+        enable = true;
+      };
     };
   };
   
