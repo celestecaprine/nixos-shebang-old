@@ -1,4 +1,4 @@
-{ lib, inputs, nixpkgs, home-manager, user, location, hyprland, hyprwm-contrib, xdg-desktop-portal-hyprland, ... }:
+{ lib, inputs, nixpkgs, home-manager, user, location, hyprland, hyprwm-contrib, hyprland-portal, ... }:
 
 let
   system = "x86_64-linux";
@@ -11,7 +11,7 @@ let
       hyprwm-contrib-packages = hyprwm-contrib.packages.${system};
       })
       (self: super: {
-      xdg-desktop-portal-hyprland-packages = xdg-desktop-portal-hyprland.packages.${system};
+      hyprland-portal-packages = hyprland-portal.packages.${system};
       })
       (self: super: {discord = super.discord.override { withOpenASAR = true; };
     })
@@ -54,7 +54,7 @@ in
     inherit system;
     inherit pkgs;
     specialArgs = {
-      inherit inputs user location hyprland hyprwm-contrib xdg-desktop-portal-hyprland;
+      inherit inputs user location hyprland hyprwm-contrib hyprland-portal;
       host = {
         hostName = "np-t430";
         mainMonitor = "LVDS-1";

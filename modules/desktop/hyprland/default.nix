@@ -18,8 +18,8 @@
       wl-clipboard
       wlr-randr
       hyprwm-contrib-packages.grimblast
-      xdg-desktop-portal-hyprland-packages.xdg-desktop-portal-hyprland
-      xdg-desktop-portal-hyprland-packages.hyprland-share-picker
+      hyprland-portal-packages.xdg-desktop-portal-hyprland
+      hyprland-portal-packages.hyprland-share-picker
       waypipe
     ];
   };

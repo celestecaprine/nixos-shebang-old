@@ -19,13 +19,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    xdg-desktop-portal-hyprland = {
+    hyprland-portal = {
       url = "github:hyprwm/xdg-desktop-portal-hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
   
-  outputs = inputs @ { self, nixpkgs, home-manager, hyprland, hyprwm-contrib, xdg-desktop-portal-hyprland, ... }:
+  outputs = inputs @ { self, nixpkgs, home-manager, hyprland, hyprwm-contrib, hyprland-portal, ... }:
     let
       user = "shebang";
       location = "$HOME/.flake";
@@ -34,7 +34,7 @@
       nixosConfigurations = (
         import ./hosts {
           inherit (nixpkgs) lib;
-	  inherit inputs nixpkgs home-manager user location hyprland hyprwm-contrib xdg-desktop-portal-hyprland;
+	  inherit inputs nixpkgs home-manager user location hyprland hyprwm-contrib hyprland-portal;
 	}
       );
     };
