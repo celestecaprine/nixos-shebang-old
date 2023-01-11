@@ -2,8 +2,17 @@
 
 {
   programs.zsh = {
-    prezto = {
+    #prezto = {
+    #  enable = true;
+    #  terminal.autoTitle = true;
+    #  prompt = {
+    #    theme = "pure";
+    #  };
+    #  editor.keymap = "vi";
+    #};
+    oh-my-zsh = {
       enable = true;
+      theme = "refined";
     };
   };
   xdg.dataFile."/home/${user}/.zshrc".text = ''

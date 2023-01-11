@@ -18,6 +18,7 @@
       wl-clipboard
       wlr-randr
       hyprwm-contrib-packages.grimblast
+      waypipe
     ];
   };
 

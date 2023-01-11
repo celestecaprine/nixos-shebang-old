@@ -5,6 +5,9 @@ let
     MONITORS
     
     # exec-once = waybar & hyprpaper & firefox
+    exec-once=${pkgs.hyprland}/bin/hyprctl setcursor Catppuccin-Mocha-Dark-Cursors 32
+    exec-once=${pkgs.mpvpaper}/bin/mpvpaper LVDS-1 -o "loop" $HOME/.config/wallpaper.gif
+    exec-once=${pkgs.waybar}/bin/waybar &
     
     # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
     input {
@@ -92,13 +95,13 @@ let
     
     
     # See https://wiki.hyprland.org/Configuring/Keywords/ for more
-    $mainMod = ALT
+    $mainMod = SUPER
     
     # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-    bind = $mainMod, Q, exec, ${pkgs.foot}/bin/foot
+    bind = $mainMod, T, exec, ${pkgs.foot}/bin/foot
     bind = $mainMod, C, killactive, 
-    bind = $mainMod, M, exit, 
-    bind = $mainMod, E, exec, ${pkgs.foot}foot ${pkgs.lf}/bin/lf
+    bind = $mainMod SHIFT, Q, exit, 
+    bind = $mainMod, E, exec, ${pkgs.foot}/bin/foot ${pkgs.lf}/bin/lf
     bind = $mainMod, V, togglefloating, 
     bind = $mainMod, R, exec, ${pkgs.tofi}/bin/tofi-drun --drun-launch=true
     bind = $mainMod, P, pseudo, # dwindle

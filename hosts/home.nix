@@ -43,7 +43,11 @@
       gtk.enable = true;
       name = "Catppuccin-Mocha-Dark-Cursors";
       package = pkgs.catppuccin-cursors.mochaDark;
-      size = 24;
+      size = 32;
+      x11 = {
+        enable = true;
+        defaultCursor = "Catppuccin-Mocha-Dark-Cursors";
+      };
     };
     stateVersion = "22.11";
   };
