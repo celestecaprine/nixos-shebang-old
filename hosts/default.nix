@@ -61,6 +61,10 @@ in
       };
     };
     modules = [
+      vscode-server.nixosModule
+        ({ config, pkgs, ... }: {
+          services.vscode-server.enable = true;
+        })
       hyprland.nixosModules.default
       ./t430
       ./configuration.nix
