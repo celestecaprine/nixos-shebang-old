@@ -26,7 +26,7 @@
     };
   };
   
-  outputs = inputs @ { self, nixpkgs, home-manager, vscode-server, hyprland, hyprwm-contrib, hyprland-portal, ... }:
+  outputs = inputs @ { self, nixpkgs, home-manager, vscode-server, hyprland, ... }:
     let
       user = "shebang";
       location = "$HOME/.flake";
@@ -35,7 +35,7 @@
       nixosConfigurations = (
         import ./hosts {
           inherit (nixpkgs) lib;
-	  inherit inputs nixpkgs home-manager vscode-server user location hyprland hyprwm-contrib hyprland-portal;
+	  inherit inputs nixpkgs home-manager vscode-server user location hyprland;
 	}
       );
     };

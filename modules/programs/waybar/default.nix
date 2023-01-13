@@ -1,35 +1,22 @@
 { config, lib, pkgs, host, user, ... }:
 
 {
-  environment.systemPackages = with pkgs; [
-    waybar
-  ];
 
-  nixpkgs.overlays = [
-    (final: prev: {
-      waybar =
-        let
-          hyprctl = "${pkgs.hyprland}/bin/hyprctl";
-          waybarPatchFile = import ./workspace-patch.nix { inherit pkgs hyprctl; };
-        in
-        prev.waybar.overrideAttrs (oldAttrs: {
-          mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-          patches = (oldAttrs.patches or [ ]) ++ [ waybarPatchFile ];
-        });
-    })
-  ];
-
-  home-manager.users.${user} = {
+  home-manager.users.${user} = { 
+    home.file.".config/waybar/cava-barconfig".source = ./cava-barconfig;
     programs.waybar = {
       enable = true;
+      package = pkgs.waybar.overrideAttrs (oa: {
+      mesonFlags = (oa.mesonFlags or  [ ]) ++ [ "-Dexperimental=true" ];
+  });
       settings = with host; {
         Main = {
           layer = "top";
           position = "top";
           height = 30;
           output = [ "${mainMonitor}" ];
-          modules-left = [ "wlr/workspaces" "hyprland/window" ];
-          modules-right = ["mpd" "tray" "idle_inhibitor" "clock"];
+          modules-left = [ "wlr/workspaces" "custom/cava-internal" "hyprland/window" ];
+          modules-right = ["mpd" "tray" "idle_inhibitor" "clock" "battery"];
           "wlr/workspaces" = {
             "format"="{icon}";
             "on-click"="activate";
@@ -40,9 +27,49 @@
               "4"="";
               "5"="";
               "urgent"="";
-              "active"="";
+              "active"="";
               "default"="";
             };
+          };
+          "custom/cava-internal" = {
+            "exec" = "sleep 1s && cava-internal";
+            "tooltip" = false;
+          };
+          "hyprland/window" = {
+            "format" = "{}";
+            "separate-outputs" = true;
+          };
+          "mpd" = {
+            "max-length" = 25;
+            "format" = "<span foreground='#89b4fa'></span> {title}";
+            "format-paused" = " {title}";
+            "format-stopped" = "<span foreground='#89b4fa'></span>";
+            "format-disconnected" = "";
+            "on-click" = "mpc --quiet toggle";
+            "on-click-right" = "mpc ls | mpc add";
+            "on-click-middle" = "kitty --class='ncmpcpp' ncmpcpp ";
+            "on-scroll-up" = "mpc --quiet prev";
+            "on-scroll-down" = "mpc --quiet next";
+            "smooth-scrolling-threshold" = 5;
+            "tooltip-format" = "{title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%H:%M:%S})";
+          };
+          "tray" = {
+            "icon-size" = 16;
+            "spacing" = 16;
+          };
+          "idle_inhibitor" = {
+            "format" = "{icon}";
+            "format-icons" = {
+              "activated" = "";
+              "deactivated" = "";
+            };
+          };
+          "clock" = {
+            "format" = "{:%a, %B %d %I:%M %p}";
+          };
+          "battery" = {
+            "format" = "{capacity}% {icon}";
+            "format-icons" = ["" "" "" "" ""];
           };
         };
       };
@@ -122,7 +149,7 @@
         
         #workspaces button.active {
             	border-radius: 0px;
-        	background-color: @blue;
+        	    color: @blue;
         }
         
         button:hover {
@@ -130,7 +157,7 @@
         }
         
         
-        #tray, #custom-weather, #custom-cava-internal, #clock, #idle_inhibitor, #cpu, #memory, #mpd, #custom-mpd-zscroll {
+        #tray, #custom-cava-internal, #clock, #idle_inhibitor, #mpd, #battery {
             color: @text;
             background-color: @base;
             padding: 0px 8px 0px;

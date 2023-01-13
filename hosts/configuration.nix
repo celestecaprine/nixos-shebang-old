@@ -11,6 +11,7 @@
   };
   
   time.timeZone = "America/Chicago";
+  i18n.defaultLocale = "en_US.UTF-8";
 
   security = {
     rtkit.enable = true;
@@ -31,18 +32,41 @@
   ];
 
   environment = {
+    binsh = "${pkgs.dash}/bin/dash";
     variables = {
       TERMINAL = "foot";
       EDITOR= "nvim";
       VISUAL = "nvim";
     };
     systemPackages = with pkgs; [
-      pridefetch
-      killall
+      git
+      neovim
+      wget
+      curl
+      neofetch
+      exa
+      gcc
+      clang
+      cargo
+      zig
+      p7zip
+      atool
+      unzip
+      ranger
+      ffmpeg
+      ffmpegthumbnailer
+      glib
+      xdg-utils
       pciutils
       usbutils
-      curl
-      git
+      gdb
+      killall
+      nodejs
+      socat
+      zip
+      rar
+      frp
+      sops
     ];
   };
   
@@ -67,6 +91,7 @@
     tlp = {
       enable = true;
     };
+    dbus.enable = true;
     flatpak.enable = true;
   };
 

@@ -1,9 +1,7 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
-  imports = [ ../../programs/waybar ];
-
-  services.dbus.enable = true;
+  imports = [ ../../programs/waybar];
 
   environment = {
     variables = {
@@ -17,9 +15,9 @@
       slurp
       wl-clipboard
       wlr-randr
-      hyprwm-contrib-packages.grimblast
-      hyprland-portal-packages.xdg-desktop-portal-hyprland
-      hyprland-portal-packages.hyprland-share-picker
+      inputs.hyprwm-contrib.packages.${pkgs.system}.grimblast
+      inputs.hyprland-portal.packages.${pkgs.system}.xdg-desktop-portal-hyprland
+      inputs.hyprland-portal.packages.${pkgs.system}.hyprland-share-picker
       waypipe
     ];
   };

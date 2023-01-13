@@ -86,7 +86,7 @@ let
     bind = $mainMod, J, togglesplit, # dwindle
     bind = $mainMod, Print, exec, grimblast --notify copysave area $HOME/Pictures/Screenshots/screenshot-$(date +%Y-%d-%m_%H:%M:%S)
 bind = $mainMod SHIFT, Print, exec, grimblast --notify copysave output $HOME/Pictures/Screenshots/screenshot-$(date +%Y-%d-%m_%H:%M:%S)
-bind = $mainMod CONTROL, Print, exec, grimblast --notify copysave active $HOME/Pictures/Screenshots/$(${pkgs.hyprland}hyprctl activewindow -j | ${pkgs.jq}/bin/jq -r '.class')-$(date +%Y-%d-%m_%H:%M:%S)
+bind = $mainMod CONTROL, Print, exec, grimblast --notify copysave active $HOME/Pictures/Screenshots/$(${pkgs.hyprland}/bin/hyprctl activewindow -j | ${pkgs.jq}/bin/jq -r '.class')-$(date +%Y-%d-%m_%H:%M:%S)
     
     # Move focus with mainMod + arrow keys
     bind = $mainMod, left, movefocus, l

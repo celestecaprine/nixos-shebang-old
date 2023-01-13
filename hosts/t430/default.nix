@@ -3,6 +3,6 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/desktop/hyprland/default.nix
+    ../../modules/desktop/hyprland
   ];
 }
