@@ -43,6 +43,7 @@
       pavucontrol
       imv
       mpv
+      mpc-cli
 
       # Web Programs
       firefox

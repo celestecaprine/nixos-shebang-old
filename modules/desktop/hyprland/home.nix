@@ -125,6 +125,27 @@ bind = $mainMod CONTROL, Print, exec, grimblast --notify copysave active $HOME/P
     # Move/resize windows with mainMod + LMB/RMB and dragging
     bindm = $mainMod, mouse:272, movewindow
     bindm = $mainMod, mouse:273, resizewindow
+    
+    bind = $mainMod, J, layoutmsg, cyclenext
+    bind = $mainMod, K, layoutmsg, cycleprev
+    bind = $mainMod SHIFT, J, layoutmsg, swapnext
+    bind = $mainMod SHIFT, K, layoutmsg, swapprev
+    bind = $mainMod, H, resizeactive, -80 0
+    bind = $mainMod, L, resizeactive, 80 0
+    bind = $mainMod, F, fullscreen
+    
+    # Media keys
+    bind = , XF86AudioPlay, exec, mpc toggle
+    bind = , XF86AudioNext, exec, mpc next
+    bind = , XF86AudioPrev, exec, mpc prev
+    bind = , XF86AudioStop, exec, mpc stop
+    
+    bind = CONTROL_ALT, Delete, exec, $HOME/.local/bin/powermenu
+    
+    bind=$mainMod,comma,focusmonitor, l
+    bind=$mainMod,period,focusmonitor, r
+    bind=$mainModSHIFT,comma,movewindow, l
+    bind=$mainModSHIFT,period,movewindow, r
 
 
   '';
