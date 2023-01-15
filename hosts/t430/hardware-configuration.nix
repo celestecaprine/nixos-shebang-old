@@ -13,7 +13,6 @@
     extraModulePackages = [ ];
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
-    zfs.enabled = true;
   };
 
   fileSystems."/" =
